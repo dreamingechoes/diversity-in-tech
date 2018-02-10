@@ -6,16 +6,14 @@
 use Mix.Config
 
 # General application configuration
-config :diversity_in_tech,
-  ecto_repos: [DiversityInTech.Repo]
+config :diversity_in_tech, ecto_repos: [DiversityInTech.Repo]
 
 # Configures the endpoint
 config :diversity_in_tech, DiversityInTechWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "PPcdK0rCZEMVH+e77Cz4r8Pcd1hiP3PL/zvoyadX73y5KpwfSI3VyljN4mEsIjV/",
   render_errors: [view: DiversityInTechWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: DiversityInTech.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: DiversityInTech.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -24,4 +22,4 @@ config :logger, :console,
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"

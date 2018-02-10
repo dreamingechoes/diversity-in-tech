@@ -25,13 +25,13 @@ defmodule DiversityInTechWeb.ChannelCase do
     end
   end
 
-
   setup tags do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(DiversityInTech.Repo)
+
     unless tags[:async] do
       Ecto.Adapters.SQL.Sandbox.mode(DiversityInTech.Repo, {:shared, self()})
     end
+
     :ok
   end
-
 end

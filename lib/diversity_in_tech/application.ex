@@ -11,7 +11,7 @@ defmodule DiversityInTech.Application do
       # Start the Ecto repository
       supervisor(DiversityInTech.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(DiversityInTechWeb.Endpoint, []),
+      supervisor(DiversityInTechWeb.Endpoint, [])
       # Start your own worker by calling: DiversityInTech.Worker.start_link(arg1, arg2, arg3)
       # worker(DiversityInTech.Worker, [arg1, arg2, arg3]),
     ]
