@@ -1,20 +1,28 @@
 # DiversityInTech
 
-To start your Phoenix server:
+Phoenix application to rate tech companies according to how diverse friendly they are. Inspired by [techleaks.org](https://www.techleaks.org/).
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+## Setup development environment with Docker
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+This project is Docker friendly from day one. To start working on it:
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+* Setup the web container with `docker-compose build web`
+* Install dependencies with `docker-compose run web mix deps.get`
+* Create your database with `docker-compose run web mix ecto.create`
+* Migrate your database with `docker-compose run web mix ecto.migrate`
+* Install Node.js dependencies with `docker-compose run web sh -c "cd assets; npm install"`
+* Start the application with `docker-compose up`
 
-## Learn more
+## Setup testing environment with Docker
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+This step assumes you already followed instructions from previous paragraph.
+
+* Create your testing database with `docker-compose run web env MIX_ENV=test mix ecto.create`
+* Migrate your testing database with `docker-compose run web env MIX_ENV=test mix ecto.migrate`
+* Run the test suite with `mix test`
+
+----------------------------
+
+This project was developed by [dreamingechoes](https://github.com/dreamingechoes).
+It adheres to its [code of conduct](https://github.com/dreamingechoes/base/blob/master/files/CODE_OF_CONDUCT.md) and
+[contributing guidelines](https://github.com/dreamingechoes/base/blob/master/files/CONTRIBUTING.md), and uses an equivalent [license](https://github.com/dreamingechoes/base/blob/master/files/LICENSE).
