@@ -1,0 +1,32 @@
+<h2>Listing Reviews</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Pros</th>
+      <th>Cons</th>
+      <th>Advice</th>
+      <th>Company</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for review <- @reviews do %>
+    <tr>
+      <td><%= review.pros %></td>
+      <td><%= review.cons %></td>
+      <td><%= review.advice %></td>
+      <td><%= review.company_id %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: review_path(@conn, :show, review), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: review_path(@conn, :edit, review), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: review_path(@conn, :delete, review), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Review", to: review_path(@conn, :new) %></span>

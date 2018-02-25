@@ -1,0 +1,5 @@
+<h2>Edit Review</h2>
+
+<%= render "form.html", Map.put(assigns, :action, review_path(@conn, :update, @review)) %>
+
+<span><%= link "Back", to: review_path(@conn, :index) %></span>

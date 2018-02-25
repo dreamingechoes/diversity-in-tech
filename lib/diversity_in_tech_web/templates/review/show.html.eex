@@ -1,0 +1,28 @@
+<h2>Show Review</h2>
+
+<ul>
+
+  <li>
+    <strong>Pros:</strong>
+    <%= @review.pros %>
+  </li>
+
+  <li>
+    <strong>Cons:</strong>
+    <%= @review.cons %>
+  </li>
+
+  <li>
+    <strong>Advice:</strong>
+    <%= @review.advice %>
+  </li>
+
+  <li>
+    <strong>Company:</strong>
+    <%= @review.company_id %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: review_path(@conn, :edit, @review) %></span>
+<span><%= link "Back", to: review_path(@conn, :index) %></span>
