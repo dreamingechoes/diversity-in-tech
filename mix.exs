@@ -45,6 +45,14 @@ defmodule DiversityInTech.Mixfile do
       {:phoenix_html, "~> 2.10.4"},
       {:phoenix_live_reload, "~> 1.1.1", only: :dev},
 
+      # Authentication
+      {:comeonin, "~> 4.0"},
+      {:pbkdf2_elixir, "~> 0.12"},
+      {:guardian, "~> 0.14.5"},
+
+      # Authorization
+      {:bodyguard, "~> 2.2.0"},
+
       # Code analysis
       {:credo, "~> 0.9.0-rc1", only: [:dev, :test]},
       {:dialyxir, "~> 0.5.1", only: [:dev], runtime: false},
@@ -54,6 +62,14 @@ defmodule DiversityInTech.Mixfile do
 
       # Deploying
       {:distillery, "~> 1.5.1", runtime: false},
+
+      # File uploads
+      {:arc, "~> 0.8.0"},
+      {:arc_ecto, "~> 0.7.0"},
+
+      # Pagination
+      {:scrivener_ecto, "~> 1.2.3"},
+      {:scrivener_html, "~> 1.7.1"},
 
       # Testing and seeding data
       {:faker, "~> 0.9.0"},
