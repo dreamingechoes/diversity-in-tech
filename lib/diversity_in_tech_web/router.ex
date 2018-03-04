@@ -18,10 +18,9 @@ defmodule DiversityInTechWeb.Router do
     pipe_through(:browser)
 
     get("/", PageController, :index)
-  end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", DiversityInTechWeb do
-  #   pipe_through :api
-  # end
+    resources("/companies", DiversityInTechWeb.CompanyController)
+    resources("/reviews", DiversityInTechWeb.ReviewController)
+    resources("/users", DiversityInTechWeb.UserController)
+  end
 end
