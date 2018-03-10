@@ -1,4 +1,4 @@
-FROM dreamingechoes/elixir:1.6.1
+FROM dreamingechoes/elixir:1.6.3
 
 RUN apk add --no-cache --virtual inotify-tools
 
