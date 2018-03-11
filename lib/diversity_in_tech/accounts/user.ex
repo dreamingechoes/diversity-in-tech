@@ -3,13 +3,12 @@ defmodule DiversityInTech.Accounts.User do
   import Ecto.Changeset
   alias DiversityInTech.Accounts.User
 
-
   schema "users" do
-    field :email, :string
-    field :name, :string
-    field :role, :integer
-    field :surname, :string
-    field :username, :string
+    field(:email, :string)
+    field(:name, :string)
+    field(:role, :integer)
+    field(:surname, :string)
+    field(:username, :string)
 
     timestamps()
   end

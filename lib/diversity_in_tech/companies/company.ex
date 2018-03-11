@@ -3,12 +3,11 @@ defmodule DiversityInTech.Companies.Company do
   import Ecto.Changeset
   alias DiversityInTech.Companies.Company
 
-
   schema "companies" do
-    field :description, :string
-    field :logo, :string
-    field :name, :string
-    field :website, :string
+    field(:description, :string)
+    field(:logo, :string)
+    field(:name, :string)
+    field(:website, :string)
 
     timestamps()
   end

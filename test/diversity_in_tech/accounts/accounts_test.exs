@@ -6,8 +6,20 @@ defmodule DiversityInTech.AccountsTest do
   describe "users" do
     alias DiversityInTech.Accounts.User
 
-    @valid_attrs %{email: "some email", name: "some name", role: 42, surname: "some surname", username: "some username"}
-    @update_attrs %{email: "some updated email", name: "some updated name", role: 43, surname: "some updated surname", username: "some updated username"}
+    @valid_attrs %{
+      email: "some email",
+      name: "some name",
+      role: 42,
+      surname: "some surname",
+      username: "some username"
+    }
+    @update_attrs %{
+      email: "some updated email",
+      name: "some updated name",
+      role: 43,
+      surname: "some updated surname",
+      username: "some updated username"
+    }
     @invalid_attrs %{email: nil, name: nil, role: nil, surname: nil, username: nil}
 
     def user_fixture(attrs \\ %{}) do

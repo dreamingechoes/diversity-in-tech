@@ -6,8 +6,18 @@ defmodule DiversityInTech.CompaniesTest do
   describe "companies" do
     alias DiversityInTech.Companies.Company
 
-    @valid_attrs %{description: "some description", logo: "some logo", name: "some name", website: "some website"}
-    @update_attrs %{description: "some updated description", logo: "some updated logo", name: "some updated name", website: "some updated website"}
+    @valid_attrs %{
+      description: "some description",
+      logo: "some logo",
+      name: "some name",
+      website: "some website"
+    }
+    @update_attrs %{
+      description: "some updated description",
+      logo: "some updated logo",
+      name: "some updated name",
+      website: "some updated website"
+    }
     @invalid_attrs %{description: nil, logo: nil, name: nil, website: nil}
 
     def company_fixture(attrs \\ %{}) do
@@ -73,7 +83,12 @@ defmodule DiversityInTech.CompaniesTest do
     alias DiversityInTech.Companies.Review
 
     @valid_attrs %{advice: "some advice", company_id: 42, cons: "some cons", pros: "some pros"}
-    @update_attrs %{advice: "some updated advice", company_id: 43, cons: "some updated cons", pros: "some updated pros"}
+    @update_attrs %{
+      advice: "some updated advice",
+      company_id: 43,
+      cons: "some updated cons",
+      pros: "some updated pros"
+    }
     @invalid_attrs %{advice: nil, company_id: nil, cons: nil, pros: nil}
 
     def review_fixture(attrs \\ %{}) do

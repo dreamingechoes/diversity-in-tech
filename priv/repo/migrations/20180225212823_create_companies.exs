@@ -3,13 +3,12 @@ defmodule DiversityInTech.Repo.Migrations.CreateCompanies do
 
   def change do
     create table(:companies) do
-      add :name, :string
-      add :description, :text
-      add :logo, :string
-      add :website, :string
+      add(:name, :string)
+      add(:description, :text)
+      add(:logo, :string)
+      add(:website, :string)
 
       timestamps()
     end
-
   end
 end

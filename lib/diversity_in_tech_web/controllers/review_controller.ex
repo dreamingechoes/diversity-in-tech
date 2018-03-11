@@ -20,6 +20,7 @@ defmodule DiversityInTechWeb.ReviewController do
         conn
         |> put_flash(:info, "Review created successfully.")
         |> redirect(to: review_path(conn, :show, review))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -44,6 +45,7 @@ defmodule DiversityInTechWeb.ReviewController do
         conn
         |> put_flash(:info, "Review updated successfully.")
         |> redirect(to: review_path(conn, :show, review))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", review: review, changeset: changeset)
     end

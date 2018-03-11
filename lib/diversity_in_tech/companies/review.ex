@@ -3,12 +3,11 @@ defmodule DiversityInTech.Companies.Review do
   import Ecto.Changeset
   alias DiversityInTech.Companies.Review
 
-
   schema "reviews" do
-    field :advice, :string
-    field :company_id, :integer
-    field :cons, :string
-    field :pros, :string
+    field(:advice, :string)
+    field(:company_id, :integer)
+    field(:cons, :string)
+    field(:pros, :string)
 
     timestamps()
   end

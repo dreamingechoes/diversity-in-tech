@@ -3,13 +3,12 @@ defmodule DiversityInTech.Repo.Migrations.CreateReviews do
 
   def change do
     create table(:reviews) do
-      add :pros, :text
-      add :cons, :text
-      add :advice, :text
-      add :company_id, :integer
+      add(:pros, :text)
+      add(:cons, :text)
+      add(:advice, :text)
+      add(:company_id, :integer)
 
       timestamps()
     end
-
   end
 end
