@@ -5,17 +5,21 @@ defmodule DiversityInTech.Companies.Review do
 
   schema "reviews" do
     field(:advice, :string)
-    field(:company_id, :integer)
     field(:cons, :string)
     field(:pros, :string)
+    field(:company_id, :integer)
 
     timestamps()
   end
 
+  # Changeset cast params
+  @params [:pros, :cons, :advice, :company_id]
+  @required [:company_id]
+
   @doc false
   def changeset(%Review{} = review, attrs) do
     review
-    |> cast(attrs, [:pros, :cons, :advice, :company_id])
-    |> validate_required([:pros, :cons, :advice, :company_id])
+    |> cast(attrs, @params)
+    |> validate_required(@required)
   end
 end

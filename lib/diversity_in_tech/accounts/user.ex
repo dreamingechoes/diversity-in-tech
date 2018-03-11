@@ -13,10 +13,14 @@ defmodule DiversityInTech.Accounts.User do
     timestamps()
   end
 
+  # Changeset cast params
+  @params [:email, :name, :surname, :username, :role]
+  @required [:email, :username]
+
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:email, :name, :surname, :username, :role])
-    |> validate_required([:email, :name, :surname, :username, :role])
+    |> cast(attrs, @params)
+    |> validate_required(@required)
   end
 end
