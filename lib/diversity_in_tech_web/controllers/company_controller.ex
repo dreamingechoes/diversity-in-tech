@@ -26,19 +26,19 @@ defmodule DiversityInTechWeb.CompanyController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    company = Companies.get_company!(id)
+  def show(conn, %{"slug" => slug}) do
+    company = Companies.get_company_by_slug!(slug)
     render(conn, "show.html", company: company)
   end
 
-  def edit(conn, %{"id" => id}) do
-    company = Companies.get_company!(id)
+  def edit(conn, %{"slug" => slug}) do
+    company = Companies.get_company_by_slug!(slug)
     changeset = Companies.change_company(company)
     render(conn, "edit.html", company: company, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "company" => company_params}) do
-    company = Companies.get_company!(id)
+  def update(conn, %{"slug" => slug, "company" => company_params}) do
+    company = Companies.get_company_by_slug!(slug)
 
     case Companies.update_company(company, company_params) do
       {:ok, company} ->
@@ -51,8 +51,8 @@ defmodule DiversityInTechWeb.CompanyController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    company = Companies.get_company!(id)
+  def delete(conn, %{"slug" => slug}) do
+    company = Companies.get_company_by_slug!(slug)
     {:ok, _company} = Companies.delete_company(company)
 
     conn

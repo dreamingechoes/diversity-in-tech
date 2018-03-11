@@ -7,6 +7,6 @@
 
 <div class="container">
   <div class="section">
-    <%= render "form.html", Map.put(assigns, :action, company_path(@conn, :update, @company)) %>
+    <%= render "form.html", Map.put(assigns, :action, company_path(@conn, :update, @company.slug)) %>
   </div>
 </div>

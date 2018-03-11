@@ -17,7 +17,7 @@
           </div>
           <div class="media-content">
             <div class="content">
-              <h2><%= link company.name, to: company_path(@conn, :show, company) %></h2>
+              <h2><%= link company.name, to: company_path(@conn, :show, company.slug) %></h2>
               <p><%= company.description %></p>
               <p><%= link gettext("Website"), to: company.website, class: "button is-text" %></p>
             </div>
