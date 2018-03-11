@@ -38,6 +38,22 @@ defmodule DiversityInTech.Companies do
   def get_company!(id), do: Repo.get!(Company, id)
 
   @doc """
+  Gets a single company by its slug.
+
+  Raises `Ecto.NoResultsError` if the Company does not exist.
+
+  ## Examples
+
+      iex> get_company_by_slug!("company-slug")
+      %Company{}
+
+      iex> get_company_by_slug!("company-slug")
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_company_by_slug!(slug), do: Repo.one!(Company, slug: slug)
+
+  @doc """
   Creates a company.
 
   ## Examples
