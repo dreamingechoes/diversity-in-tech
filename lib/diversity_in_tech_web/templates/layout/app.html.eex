@@ -11,13 +11,10 @@
   </head>
 
   <body>
-    <%= render("_navbar.html") %>
-
-      <%= render @view_module, @view_template, assigns %>
-
+    <%= render("_navbar.html", assigns) %>
+    <%= render @view_module, @view_template, assigns %>
     <%= render("_footer.html") %>
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
 </html>

@@ -1,8 +1,8 @@
 <nav class="navbar is-transparent">
   <div class="navbar-brand">
-    <a class="navbar-item" href="#">
-      <img src="http://via.placeholder.com/112x28" alt="Diversity In Tech" width="112" height="28">
-    </a>
+    <%= content_tag :a, href: page_path(@conn, :index), class: "navbar-item" do %>
+      <%= img_tag "http://via.placeholder.com/112x28", alt: "Diversity In Tech", width: 112, height: 28 %>
+    <% end %>
     <div class="navbar-burger burger" data-target="navbar">
       <span></span>
       <span></span>
@@ -12,20 +12,15 @@
 
   <div id="navbar" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="#"> Home </a>
+      <%= link gettext("Home"), to: page_path(@conn, :index), class: "navbar-item" %>
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" href="#">
-          Elements
-        </a>
+        <%= link gettext("Sections"), to: "#", class: "navbar-link" %>
         <div class="navbar-dropdown is-boxed">
-          <a class="navbar-item" href="#">
-            Companies
-          </a>
+          <%= link gettext("Companies"), to: company_path(@conn, :index), class: "navbar-item" %>
           <hr class="navbar-divider">
-          <a class="navbar-item" href="#">
-            Reviews
-          </a>
+          <%= link gettext("Reviews"), to: review_path(@conn, :index), class: "navbar-item" %>
         </div>
+      </div>
       </div>
     </div>
 
