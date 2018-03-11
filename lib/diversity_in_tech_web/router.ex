@@ -19,8 +19,8 @@ defmodule DiversityInTechWeb.Router do
 
     get("/", PageController, :index)
 
-    resources("/companies", DiversityInTechWeb.CompanyController)
-    resources("/reviews", DiversityInTechWeb.ReviewController)
-    resources("/users", DiversityInTechWeb.UserController)
+    resources("/companies", CompanyController)
+    resources("/reviews", ReviewController)
+    resources("/users", UserController)
   end
 end
