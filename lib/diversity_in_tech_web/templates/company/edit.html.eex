@@ -1,5 +1,12 @@
-<h2>Edit Company</h2>
+<section class="hero is-primary">
+  <div class="hero-body">
+    <p class="title"><%= gettext("Diversity In Tech") %></p>
+    <p class="subtitle"><%= gettext("Edit Company") %></p>
+  </div>
+</section>
 
-<%= render "form.html", Map.put(assigns, :action, company_path(@conn, :update, @company)) %>
-
-<span><%= link "Back", to: company_path(@conn, :index) %></span>
+<div class="container">
+  <div class="section">
+    <%= render "form.html", Map.put(assigns, :action, company_path(@conn, :update, @company)) %>
+  </div>
+</div>

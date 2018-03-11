@@ -1,35 +1,49 @@
 <%= form_for @changeset, @action, fn f -> %>
   <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+    <div class="notification is-danger">
+      <button class="delete"></button>
+      <%= gettext("Oops, something went wrong! Please check the errors below.") %>
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= label f, :name, class: "control-label" %>
-    <%= text_input f, :name, class: "form-control" %>
-    <%= error_tag f, :name %>
+  <div class="field">
+    <%= label f, :name, class: "label" %>
+    <div class="control">
+      <%= text_input f, :name, class: "input", required: true %>
+      <%= error_tag f, :name %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= label f, :description, class: "control-label" %>
-    <%= textarea f, :description, class: "form-control" %>
-    <%= error_tag f, :description %>
+  <div class="field">
+    <%= label f, :description, class: "label" %>
+    <div class="control">
+      <%= textarea f, :description, class: "textarea" %>
+      <%= error_tag f, :description %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= label f, :logo, class: "control-label" %>
-    <%= text_input f, :logo, class: "form-control" %>
-    <%= error_tag f, :logo %>
+  <div class="field">
+    <%= label f, :logo, class: "label" %>
+    <div class="control">
+      <%= text_input f, :logo, class: "input" %>
+      <%= error_tag f, :logo %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= label f, :website, class: "control-label" %>
-    <%= text_input f, :website, class: "form-control" %>
-    <%= error_tag f, :website %>
+  <div class="field">
+    <%= label f, :website, class: "label" %>
+    <div class="control">
+      <%= text_input f, :website, class: "input" %>
+      <%= error_tag f, :website %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+  <div class="field is-grouped">
+    <div class="control">
+      <%= submit "Submit", class: "button is-link" %>
+    </div>
+    <div class="control">
+      <%= link "Cancel", to: company_path(@conn, :index), class: "button is-text" %>
+    </div>
   </div>
 <% end %>

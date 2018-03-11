@@ -1,9 +1,9 @@
 
 <section class="hero is-primary">
   <div class="hero-body">
-    <p class="title"> Diversity In Tech </p>
+    <p class="title"><%= gettext("Diversity In Tech") %></p>
     <p class="subtitle">
-      Rate tech companies according to how <strong>diverse friendly</strong> they are
+      <%= gettext("Rate tech companies according to how <strong>diverse friendly</strong> they are") %>
     </p>
   </div>
 </section>
