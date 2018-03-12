@@ -5,27 +5,33 @@
   </div>
 </section>
 
-<div class="container">
-  <div class="section">
-    <%= for company <- @companies do %>
-      <div class="box">
-        <article class="media">
-          <div class="media-left">
-            <figure class="image is-128x128">
-              <%= img_tag company.logo, alt: company.name %>
-            </figure>
-          </div>
-          <div class="media-content">
-            <div class="content">
-              <h2><%= link company.name, to: company_path(@conn, :show, company.slug) %></h2>
-              <p><%= company.description %></p>
-              <p><%= link gettext("Website"), to: company.website, class: "button is-text" %></p>
-            </div>
-          </div>
-        </article>
+<section class="section">
+  <div class="container">
+    <div class="columns is-desktop">
+      <div class="column is-one-third">
+        <div class="box"><%= link "New Company", to: company_path(@conn, :new), class: "button is-link" %></div>
       </div>
-    <% end %>
 
-    <%= link "New Company", to: company_path(@conn, :new), class: "button is-link" %>
+      <div class="column">
+        <%= for company <- @companies do %>
+          <div class="box">
+            <article class="media">
+              <div class="media-left">
+                <figure class="image is-128x128">
+                  <%= img_tag company.logo, alt: company.name %>
+                </figure>
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <h2><%= link company.name, to: company_path(@conn, :show, company.slug) %></h2>
+                  <p><%= company.description %></p>
+                  <p><%= link gettext("Website"), to: company.website, class: "button is-text" %></p>
+                </div>
+              </div>
+            </article>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
+</section>
