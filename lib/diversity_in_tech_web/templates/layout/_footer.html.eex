@@ -1,35 +1,13 @@
 <footer class="footer">
   <div class="container">
-    <div class="columns">
-      <div class="column is-4">
-        <div id="about" class="content">
-          <strong>Diversity In Tech</strong> by <a href="http://dreamingecho.es">dreamingechoes</a>
-
-          <div class="social-media-container">
-          </div>
-        </div>
-      </div>
-
-      <div class="column is-4">
-        <div id="sister">
-          <p> More content about <strong>diversity</strong> in tech: </p>
-          <ul>
-            <li>
-              <a href="http://folkswhocode.org">
-                <img src="http://via.placeholder.com/150x50" alt="Folks Who Code">
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
     <div id="tsp">
       <p>
         <small>
           Source code licensed <a href="https://opensource.org/licenses/mit-license.php">MIT</a>.
           <br>
           Website content licensed <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.
+          <br>
+          <strong>Diversity In Tech</strong> by <a href="http://dreamingecho.es">dreamingechoes</a>
         </small>
       </p>
     </div>
