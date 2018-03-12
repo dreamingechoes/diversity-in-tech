@@ -12,18 +12,11 @@
 
   <div id="navbar" class="navbar-menu">
     <div class="navbar-start">
-      <%= link gettext("Home"), to: page_path(@conn, :index), class: "navbar-item" %>
       <div class="navbar-item has-dropdown is-hoverable">
-        <%= link gettext("Sections"), to: "#", class: "navbar-link" %>
-        <div class="navbar-dropdown is-boxed">
-          <%= link gettext("Companies"), to: company_path(@conn, :index), class: "navbar-item" %>
-          <hr class="navbar-divider">
-          <%= link gettext("Reviews"), to: review_path(@conn, :index), class: "navbar-item" %>
-        </div>
-      </div>
+        <%= link gettext("Companies"), to: company_path(@conn, :index), class: "navbar-item" %>
+        <%= link gettext("Reviews"), to: review_path(@conn, :index), class: "navbar-item" %>
       </div>
     </div>
-
     <div class="navbar-end">
       <a href="#" class="navbar-item">
         <span class="icon">
