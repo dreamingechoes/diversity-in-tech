@@ -1,4 +1,4 @@
 import "phoenix_html";
 
 // Custom scripts
-import "layout/nabvar";
+import "layout/nabvar.js";
