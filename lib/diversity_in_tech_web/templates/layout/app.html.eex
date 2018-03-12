@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
-  <body>
+  <body class="page-columns">
     <%= render("_navbar.html", assigns) %>
     <%= render @view_module, @view_template, assigns %>
     <%= render("_footer.html") %>
