@@ -46,9 +46,9 @@ defmodule DiversityInTech.Mixfile do
       {:phoenix_live_reload, "~> 1.1.1", only: :dev},
 
       # Authentication
-      {:comeonin, "~> 4.0"},
-      {:pbkdf2_elixir, "~> 0.12"},
-      {:guardian, "~> 0.14.5"},
+      {:comeonin, "~> 4.1.1"},
+      {:bcrypt_elixir, "~> 1.0"},
+      {:guardian, "~> 1.0"},
 
       # Authorization
       {:bodyguard, "~> 2.2.0"},
