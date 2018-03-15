@@ -11,7 +11,7 @@ config :diversity_in_tech, ecto_repos: [DiversityInTech.Repo]
 # Configures the endpoint
 config :diversity_in_tech, DiversityInTechWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "PPcdK0rCZEMVH+e77Cz4r8Pcd1hiP3PL/zvoyadX73y5KpwfSI3VyljN4mEsIjV/",
+  secret_key_base: System.get_env("DIVERSITY_IN_TECH_SECRET_KEY_BASE"),
   render_errors: [view: DiversityInTechWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: DiversityInTech.PubSub, adapter: Phoenix.PubSub.PG2]
 
