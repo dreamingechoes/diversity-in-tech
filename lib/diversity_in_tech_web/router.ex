@@ -9,18 +9,22 @@ defmodule DiversityInTechWeb.Router do
     plug(:put_secure_browser_headers)
   end
 
-  pipeline :api do
-    plug(:accepts, ["json"])
+  pipeline :browser_auth do
+    plug(DiversityInTechWeb.Guardian.AuthPipeline)
   end
 
   scope "/", DiversityInTechWeb do
-    # Use the default browser stack
     pipe_through(:browser)
 
     get("/", PageController, :index)
 
+    resources("/users", UserController)
+  end
+
+  scope "/", DiversityInTechWeb do
+    pipe_through(:browser_auth)
+
     resources("/companies", CompanyController, param: "slug")
     resources("/reviews", ReviewController)
-    resources("/users", UserController)
   end
 end
