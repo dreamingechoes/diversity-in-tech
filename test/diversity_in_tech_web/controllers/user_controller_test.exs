@@ -17,7 +17,13 @@ defmodule DiversityInTechWeb.UserControllerTest do
     surname: "some updated surname",
     username: "some updated username"
   }
-  @invalid_attrs %{email: nil, name: nil, role: nil, surname: nil, username: nil}
+  @invalid_attrs %{
+    email: nil,
+    name: nil,
+    role: nil,
+    surname: nil,
+    username: nil
+  }
 
   def fixture(:user) do
     {:ok, user} = Accounts.create_user(@create_attrs)

@@ -56,7 +56,10 @@ defmodule DiversityInTechWeb.CompanyControllerTest do
   describe "edit company" do
     setup [:create_company]
 
-    test "renders form for editing chosen company", %{conn: conn, company: company} do
+    test "renders form for editing chosen company", %{
+      conn: conn,
+      company: company
+    } do
       conn = get(conn, company_path(conn, :edit, company))
       assert html_response(conn, 200) =~ "Edit Company"
     end
@@ -66,7 +69,9 @@ defmodule DiversityInTechWeb.CompanyControllerTest do
     setup [:create_company]
 
     test "redirects when data is valid", %{conn: conn, company: company} do
-      conn = put(conn, company_path(conn, :update, company), company: @update_attrs)
+      conn =
+        put(conn, company_path(conn, :update, company), company: @update_attrs)
+
       assert redirected_to(conn) == company_path(conn, :show, company)
 
       conn = get(conn, company_path(conn, :show, company))
@@ -74,7 +79,9 @@ defmodule DiversityInTechWeb.CompanyControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, company: company} do
-      conn = put(conn, company_path(conn, :update, company), company: @invalid_attrs)
+      conn =
+        put(conn, company_path(conn, :update, company), company: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "Edit Company"
     end
   end

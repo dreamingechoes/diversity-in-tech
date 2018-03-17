@@ -3,7 +3,12 @@ defmodule DiversityInTechWeb.ReviewControllerTest do
 
   alias DiversityInTech.Companies
 
-  @create_attrs %{advice: "some advice", company_id: 42, cons: "some cons", pros: "some pros"}
+  @create_attrs %{
+    advice: "some advice",
+    company_id: 42,
+    cons: "some cons",
+    pros: "some pros"
+  }
   @update_attrs %{
     advice: "some updated advice",
     company_id: 43,
@@ -61,7 +66,9 @@ defmodule DiversityInTechWeb.ReviewControllerTest do
     setup [:create_review]
 
     test "redirects when data is valid", %{conn: conn, review: review} do
-      conn = put(conn, review_path(conn, :update, review), review: @update_attrs)
+      conn =
+        put(conn, review_path(conn, :update, review), review: @update_attrs)
+
       assert redirected_to(conn) == review_path(conn, :show, review)
 
       conn = get(conn, review_path(conn, :show, review))
@@ -69,7 +76,9 @@ defmodule DiversityInTechWeb.ReviewControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, review: review} do
-      conn = put(conn, review_path(conn, :update, review), review: @invalid_attrs)
+      conn =
+        put(conn, review_path(conn, :update, review), review: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "Edit Review"
     end
   end

@@ -32,7 +32,14 @@ defmodule DiversityInTechWeb.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(DiversityInTechWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(
+        DiversityInTechWeb.Gettext,
+        "errors",
+        msg,
+        msg,
+        count,
+        opts
+      )
     else
       Gettext.dgettext(DiversityInTechWeb.Gettext, "errors", msg, opts)
     end

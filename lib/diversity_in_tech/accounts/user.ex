@@ -28,7 +28,8 @@ defmodule DiversityInTech.Accounts.User do
   end
 
   defp generate_encrypted_password(
-         %Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset
+         %Ecto.Changeset{valid?: true, changes: %{password: password}} =
+           changeset
        ) do
     change(changeset, password: Bcrypt.hashpwsalt(password))
   end

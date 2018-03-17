@@ -40,7 +40,9 @@ defmodule DiversityInTech.CompaniesTest do
     end
 
     test "create_company/1 with valid data creates a company" do
-      assert {:ok, %Company{} = company} = Companies.create_company(@valid_attrs)
+      assert {:ok, %Company{} = company} =
+               Companies.create_company(@valid_attrs)
+
       assert company.description == "some description"
       assert company.logo == "some logo"
       assert company.name == "some name"
@@ -48,7 +50,8 @@ defmodule DiversityInTech.CompaniesTest do
     end
 
     test "create_company/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Companies.create_company(@invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} =
+               Companies.create_company(@invalid_attrs)
     end
 
     test "update_company/2 with valid data updates the company" do
@@ -63,14 +66,20 @@ defmodule DiversityInTech.CompaniesTest do
 
     test "update_company/2 with invalid data returns error changeset" do
       company = company_fixture()
-      assert {:error, %Ecto.Changeset{}} = Companies.update_company(company, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Companies.update_company(company, @invalid_attrs)
+
       assert company == Companies.get_company!(company.id)
     end
 
     test "delete_company/1 deletes the company" do
       company = company_fixture()
       assert {:ok, %Company{}} = Companies.delete_company(company)
-      assert_raise Ecto.NoResultsError, fn -> Companies.get_company!(company.id) end
+
+      assert_raise Ecto.NoResultsError, fn ->
+        Companies.get_company!(company.id)
+      end
     end
 
     test "change_company/1 returns a company changeset" do
@@ -82,7 +91,12 @@ defmodule DiversityInTech.CompaniesTest do
   describe "reviews" do
     alias DiversityInTech.Companies.Review
 
-    @valid_attrs %{advice: "some advice", company_id: 42, cons: "some cons", pros: "some pros"}
+    @valid_attrs %{
+      advice: "some advice",
+      company_id: 42,
+      cons: "some cons",
+      pros: "some pros"
+    }
     @update_attrs %{
       advice: "some updated advice",
       company_id: 43,
@@ -119,7 +133,8 @@ defmodule DiversityInTech.CompaniesTest do
     end
 
     test "create_review/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Companies.create_review(@invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} =
+               Companies.create_review(@invalid_attrs)
     end
 
     test "update_review/2 with valid data updates the review" do
@@ -134,14 +149,20 @@ defmodule DiversityInTech.CompaniesTest do
 
     test "update_review/2 with invalid data returns error changeset" do
       review = review_fixture()
-      assert {:error, %Ecto.Changeset{}} = Companies.update_review(review, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Companies.update_review(review, @invalid_attrs)
+
       assert review == Companies.get_review!(review.id)
     end
 
     test "delete_review/1 deletes the review" do
       review = review_fixture()
       assert {:ok, %Review{}} = Companies.delete_review(review)
-      assert_raise Ecto.NoResultsError, fn -> Companies.get_review!(review.id) end
+
+      assert_raise Ecto.NoResultsError, fn ->
+        Companies.get_review!(review.id)
+      end
     end
 
     test "change_review/1 returns a review changeset" do

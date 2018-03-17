@@ -20,7 +20,13 @@ defmodule DiversityInTech.AccountsTest do
       surname: "some updated surname",
       username: "some updated username"
     }
-    @invalid_attrs %{email: nil, name: nil, role: nil, surname: nil, username: nil}
+    @invalid_attrs %{
+      email: nil,
+      name: nil,
+      role: nil,
+      surname: nil,
+      username: nil
+    }
 
     def user_fixture(attrs \\ %{}) do
       {:ok, user} =
@@ -67,7 +73,10 @@ defmodule DiversityInTech.AccountsTest do
 
     test "update_user/2 with invalid data returns error changeset" do
       user = user_fixture()
-      assert {:error, %Ecto.Changeset{}} = Accounts.update_user(user, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Accounts.update_user(user, @invalid_attrs)
+
       assert user == Accounts.get_user!(user.id)
     end
 
