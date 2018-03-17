@@ -19,6 +19,7 @@ defmodule DiversityInTechWeb.Router do
     get("/", PageController, :index)
 
     resources("/users", UserController)
+    resources("/session", SessionController, only: [:new, :create])
   end
 
   scope "/", DiversityInTechWeb do
@@ -26,5 +27,6 @@ defmodule DiversityInTechWeb.Router do
 
     resources("/companies", CompanyController, param: "slug")
     resources("/reviews", ReviewController)
+    resources("/session", SessionController, only: [:delete])
   end
 end
