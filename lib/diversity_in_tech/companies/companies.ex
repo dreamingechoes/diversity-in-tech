@@ -51,7 +51,10 @@ defmodule DiversityInTech.Companies do
       ** (Ecto.NoResultsError)
 
   """
-  def get_company_by_slug!(slug), do: Repo.one!(Company, slug: slug)
+  def get_company_by_slug!(slug) do
+    query = from(company in Company, where: company.slug == ^slug)
+    Repo.one!(query)
+  end
 
   @doc """
   Creates a company.
