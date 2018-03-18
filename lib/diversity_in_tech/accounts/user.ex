@@ -6,6 +6,7 @@ defmodule DiversityInTech.Accounts.User do
 
   schema "users" do
     field(:email, :string)
+    field(:encrypted_password, :string)
     field(:password, :string, virtual: true)
     field(:name, :string)
     field(:role, :integer)
@@ -16,7 +17,7 @@ defmodule DiversityInTech.Accounts.User do
   end
 
   # Changeset cast params
-  @params [:email, :name, :surname, :username, :role]
+  @params [:email, :password, :name, :surname, :username, :role]
   @required [:email, :username]
 
   @doc false
@@ -31,7 +32,7 @@ defmodule DiversityInTech.Accounts.User do
          %Ecto.Changeset{valid?: true, changes: %{password: password}} =
            changeset
        ) do
-    change(changeset, password: Bcrypt.hashpwsalt(password))
+    change(changeset, encrypted_password: Bcrypt.hashpwsalt(password))
   end
 
   defp generate_encrypted_password(changeset), do: changeset
