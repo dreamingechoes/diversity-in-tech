@@ -14,7 +14,10 @@
     <div class="navbar-start">
       <div class="navbar-item has-dropdown is-hoverable">
         <%= link gettext("Companies"), to: company_path(@conn, :index), class: "navbar-item" %>
-        <%= link gettext("Reviews"), to: review_path(@conn, :index), class: "navbar-item" %>
+        <%= if @conn.assigns.current_user do %>
+          <%= link gettext("Reviews"), to: review_path(@conn, :index), class: "navbar-item" %>
+          <%= link gettext("Logout"), to: session_path(@conn, :delete), method: :delete, class: "navbar-item" %>
+        <% end %>
       </div>
     </div>
     <div class="navbar-end">
