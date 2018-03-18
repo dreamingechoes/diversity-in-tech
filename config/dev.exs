@@ -62,3 +62,7 @@ config :diversity_in_tech, DiversityInTech.Repo,
   database: "diversity_in_tech_dev",
   hostname: "db",
   pool_size: 10
+
+# Finally import the config/dev.secret.exs
+# which should be versioned separately.
+import_config "dev.secret.exs"
