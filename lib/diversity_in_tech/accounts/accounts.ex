@@ -38,6 +38,30 @@ defmodule DiversityInTech.Accounts do
   def get_user!(id), do: Repo.get!(User, id)
 
   @doc """
+  Gets a single user by username or email.
+
+  Raises `Ecto.NoResultsError` if the User does not exist.
+
+  ## Examples
+
+      iex> get_user_by_username_or_email!("username")
+      %User{}
+
+      iex> get_user_by_username_or_email!("username")
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_user_by_username_or_email!(username_or_email) do
+    query =
+      from(
+        u in User,
+        where: u.username == ^username_or_email or u.email == ^username_or_email
+      )
+
+    Repo.one!(query)
+  end
+
+  @doc """
   Creates a user.
 
   ## Examples
