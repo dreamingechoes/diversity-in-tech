@@ -1,27 +1,24 @@
 defmodule DiversityInTech.Guardian do
   use Guardian, otp_app: :diversity_in_tech
   import DiversityInTechWeb.Gettext
-  import Ecto.Query
   alias Comeonin.Bcrypt
-  alias DiversityInTech.Accounts.User
-  alias DiversityInTech.Repo
+  alias DiversityInTech.Accounts
 
   def subject_for_token(resource, _claims) do
-    {:ok, to_string(resource.id)}
+    sub = to_string(resource.id)
+    {:ok, sub}
   end
 
   def resource_from_claims(claims) do
-    {:ok, %{id: claims["sub"]}}
+    id = claims["sub"]
+
+    resource = Accounts.get_user!(id)
+    {:ok, resource}
   end
 
   def authenticate_user(username_or_email, password) do
-    query =
-      from(
-        u in User,
-        where: u.username == ^username_or_email or u.email == ^username_or_email
-      )
-
-    Repo.one(query)
+    username_or_email
+    |> Accounts.get_user_by_username_or_email!()
     |> check_password(password)
   end
 
@@ -29,7 +26,7 @@ defmodule DiversityInTech.Guardian do
     do: {:error, gettext("Incorrect username or password")}
 
   defp check_password(user, password) do
-    case Bcrypt.checkpw(password, user.password) do
+    case Bcrypt.checkpw(password, user.encrypted_password) do
       true -> {:ok, user}
       false -> {:error, gettext("Incorrect username or password")}
     end
