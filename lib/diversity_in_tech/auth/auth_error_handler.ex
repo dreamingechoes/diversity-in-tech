@@ -1,8 +1,10 @@
 defmodule DiversityInTech.Guardian.AuthErrorHandler do
-  import Plug.Conn
+  import DiversityInTechWeb.Gettext
+  import Phoenix.Controller, only: [put_flash: 3, redirect: 2]
 
-  def auth_error(conn, {type, _reason}, _opts) do
-    body = Poison.encode!(%{message: to_string(type)})
-    send_resp(conn, 401, body)
+  def auth_error(conn, {_type, _reason}, _opts) do
+    conn
+    |> put_flash(:error, gettext("You have to be logged in to enter here."))
+    |> redirect(to: "/session/new")
   end
 end
