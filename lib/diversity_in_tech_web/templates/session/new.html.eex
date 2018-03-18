@@ -2,32 +2,51 @@
   <div class="container">
     <div class="columns is-desktop">
       <div class="column is-half is-offset-one-quarter box">
-        <div class="field">
-          <p class="control has-icons-left has-icons-right">
-            <input class="input" type="email" placeholder="Email">
-            <span class="icon is-small is-left">
-            <i class="fa fa-envelope"></i>
-            </span>
-            <span class="icon is-small is-right">
-            <i class="fa fa-check"></i>
-            </span>
-          </p>
-        </div>
-        <div class="field">
-          <p class="control has-icons-left">
-            <input class="input" type="password" placeholder="Password">
-            <span class="icon is-small is-left">
-            <i class="fa fa-lock"></i>
-            </span>
-          </p>
-        </div>
-        <div class="field">
-          <p class="control">
-            <button class="button is-success">
-            Login
-            </button>
-          </p>
-        </div>
+
+        <%= if get_flash(@conn, :error) do %>
+          <div class="notification is-danger">
+            <button class="delete"></button>
+            <%= get_flash(@conn, :error) %>
+          </div>
+        <% end %>
+
+        <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <%= text_input f, :username_or_email, class: "input",
+                required: true, placeholder: gettext("Username or email") %>
+              <span class="icon is-small is-left">
+                <i class="fa fa-envelope"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fa fa-check"></i>
+              </span>
+              <%= error_tag f, :username_or_email %>
+            </p>
+          </div>
+
+          <div class="field">
+            <p class="control has-icons-left">
+              <%= password_input f, :password, class: "input",
+                placeholder: gettext("Password") %>
+              <span class="icon is-small is-left">
+                <i class="fa fa-lock"></i>
+              </span>
+              <%= error_tag f, :password %>
+            <p>
+          </div>
+
+          <div class="field is-grouped">
+            <div class="control">
+              <%= submit "Login", class: "button is-link is-success" %>
+            </div>
+            <div class="control">
+              <%= link "Cancel", to: page_path(@conn, :index),
+                class: "button is-text" %>
+            </div>
+          </div>
+        <% end %>
+
       </div>
     </div>
   </div>
