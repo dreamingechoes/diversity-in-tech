@@ -11,22 +11,43 @@ defmodule DiversityInTechWeb.Router do
 
   pipeline :browser_auth do
     plug(DiversityInTechWeb.Guardian.AuthPipeline)
+    plug(DiversityInTechWeb.Plug.CurrentUser)
+  end
+
+  pipeline :browser_ensure_auth do
+    plug(Guardian.Plug.EnsureAuthenticated)
+    plug(DiversityInTechWeb.Plug.CurrentUser)
   end
 
   scope "/", DiversityInTechWeb do
-    pipe_through(:browser)
+    pipe_through([:browser, :browser_auth, :browser_ensure_auth])
+
+    # Logout route
+    delete("/logout", SessionController, :delete)
+
+    resources(
+      "/companies",
+      CompanyController,
+      only: [:new, :create, :edit, :update, :delete],
+      param: "slug"
+    )
+
+    resources("/reviews", ReviewController)
+  end
+
+  scope "/", DiversityInTechWeb do
+    pipe_through([:browser, :browser_auth])
 
     get("/", PageController, :index)
 
-    resources("/users", UserController)
+    resources(
+      "/companies",
+      CompanyController,
+      only: [:index, :show],
+      param: "slug"
+    )
+
     resources("/session", SessionController, only: [:new, :create])
-  end
-
-  scope "/", DiversityInTechWeb do
-    pipe_through(:browser_auth)
-
-    resources("/companies", CompanyController, param: "slug")
-    resources("/reviews", ReviewController)
-    resources("/session", SessionController, only: [:delete])
+    resources("/users", UserController)
   end
 end
