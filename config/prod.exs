@@ -16,6 +16,7 @@ use Mix.Config
 config :diversity_in_tech, DiversityInTechWeb.Endpoint,
   load_from_system_env: true,
   url: [host: "example.com", port: 80],
+  code_reloader: false,
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
