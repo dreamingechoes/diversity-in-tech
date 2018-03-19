@@ -1,51 +1,58 @@
 <section class="section">
   <div class="container">
     <div class="columns is-desktop">
-      <div class="column is-half is-offset-one-quarter box">
+      <div class="column is-half is-offset-one-quarter">
 
         <%= if get_flash(@conn, :error) do %>
-          <div class="notification is-danger">
-            <button class="delete"></button>
-            <%= get_flash(@conn, :error) %>
-          </div>
+          <article class="message is-danger">
+            <div class="message-header">
+              <p><%= gettext("Error") %></p>
+              <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+              <%= get_flash(@conn, :error) %>
+            </div>
+          </article>
         <% end %>
 
-        <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
-          <div class="field">
-            <p class="control has-icons-left has-icons-right">
-              <%= text_input f, :username_or_email, class: "input",
-                required: true, placeholder: gettext("Username or email") %>
-              <span class="icon is-small is-left">
-                <i class="fa fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fa fa-check"></i>
-              </span>
-              <%= error_tag f, :username_or_email %>
-            </p>
-          </div>
-
-          <div class="field">
-            <p class="control has-icons-left">
-              <%= password_input f, :password, class: "input",
-                placeholder: gettext("Password") %>
-              <span class="icon is-small is-left">
-                <i class="fa fa-lock"></i>
-              </span>
-              <%= error_tag f, :password %>
-            <p>
-          </div>
-
-          <div class="field is-grouped">
-            <div class="control">
-              <%= submit "Login", class: "button is-link is-success" %>
+        <div class="box">
+          <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
+            <div class="field">
+              <p class="control has-icons-left has-icons-right">
+                <%= text_input f, :username_or_email, class: "input",
+                  required: true, placeholder: gettext("Username or email") %>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-envelope"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fa fa-check"></i>
+                </span>
+                <%= error_tag f, :username_or_email %>
+              </p>
             </div>
-            <div class="control">
-              <%= link "Cancel", to: page_path(@conn, :index),
-                class: "button is-text" %>
+
+            <div class="field">
+              <p class="control has-icons-left">
+                <%= password_input f, :password, class: "input",
+                  placeholder: gettext("Password") %>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-lock"></i>
+                </span>
+                <%= error_tag f, :password %>
+              <p>
             </div>
-          </div>
-        <% end %>
+
+            <div class="field is-grouped">
+              <div class="control">
+                <%= submit "Login", class: "button is-link is-success" %>
+              </div>
+              <div class="control">
+                <%= link "Cancel", to: page_path(@conn, :index),
+                  class: "button is-text" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
 
       </div>
     </div>
