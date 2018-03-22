@@ -1,4 +1,5 @@
 defmodule DiversityInTech.Companies.Company do
+  use Arc.Ecto.Schema
   use Ecto.Schema
   import Ecto.Changeset
   alias DiversityInTech.Companies.Company
@@ -7,14 +8,14 @@ defmodule DiversityInTech.Companies.Company do
     field(:name, :string)
     field(:slug, :string)
     field(:description, :string)
-    field(:logo, :string)
+    field(:logo, DiversityInTech.Uploaders.Image.Type)
     field(:website, :string)
 
     timestamps()
   end
 
   # Changeset cast params
-  @params [:name, :description, :logo, :website]
+  @params [:name, :description, :website]
   @required [:name]
 
   @doc false
@@ -23,6 +24,11 @@ defmodule DiversityInTech.Companies.Company do
     |> cast(attrs, @params)
     |> validate_required(@required)
     |> generate_slug()
+  end
+
+  def logo_changeset(struct, attrs) do
+    struct
+    |> cast_attachments(attrs, [:logo])
   end
 
   defp generate_slug(current_changeset) do
