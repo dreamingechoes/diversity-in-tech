@@ -5,8 +5,8 @@ defmodule DiversityInTech.Companies do
 
   import Ecto.Query, warn: false
   alias DiversityInTech.Repo
-
   alias DiversityInTech.Companies.Company
+  alias Ecto.Multi
 
   @doc """
   Returns the list of companies.
@@ -69,9 +69,20 @@ defmodule DiversityInTech.Companies do
 
   """
   def create_company(attrs \\ %{}) do
-    %Company{}
-    |> Company.changeset(attrs)
-    |> Repo.insert()
+    changeset =
+      %Company{}
+      |> Company.changeset(attrs)
+
+    result =
+      Multi.new()
+      |> Multi.insert(:company, changeset)
+      |> Multi.run(:logo, &create_logo(&1, attrs))
+      |> Repo.transaction()
+
+    case result do
+      {:ok, changes} -> {:ok, changes.company}
+      {:error, _, changeset, _} -> {:error, changeset}
+    end
   end
 
   @doc """
@@ -87,9 +98,21 @@ defmodule DiversityInTech.Companies do
 
   """
   def update_company(%Company{} = company, attrs) do
-    company
-    |> Company.changeset(attrs)
-    |> Repo.update()
+    changeset =
+      company
+      |> Company.changeset(attrs)
+
+    result =
+      Multi.new()
+      |> Multi.update(:company, changeset)
+      |> Multi.run(:old_logo, &delete_logo(&1))
+      |> Multi.run(:logo, &create_logo(&1, attrs))
+      |> Repo.transaction()
+
+    case result do
+      {:ok, changes} -> {:ok, changes.company}
+      {:error, _, changeset, _} -> {:error, changeset}
+    end
   end
 
   @doc """
@@ -105,7 +128,16 @@ defmodule DiversityInTech.Companies do
 
   """
   def delete_company(%Company{} = company) do
-    Repo.delete(company)
+    result =
+      Multi.new()
+      |> Multi.delete(:company, company)
+      |> Multi.run(:old_logo, &delete_logo(&1))
+      |> Repo.transaction()
+
+    case result do
+      {:ok, changes} -> {:ok, changes.company}
+      {:error, _, changeset, _} -> {:error, changeset}
+    end
   end
 
   @doc """
@@ -215,5 +247,26 @@ defmodule DiversityInTech.Companies do
   """
   def change_review(%Review{} = review) do
     Review.changeset(review, %{})
+  end
+
+  # Private functions
+  defp create_logo(%{company: company}, attrs) do
+    company
+    |> Company.logo_changeset(attrs)
+    |> Repo.update()
+  end
+
+  defp delete_logo(%{company: company}) do
+    path =
+      DiversityInTech.Uploader.file_path(
+        company,
+        company.logo,
+        DiversityInTech.Uploaders.Image
+      )
+
+    case DiversityInTech.Uploaders.Image.delete({path, company}) do
+      :ok -> {:ok, company}
+      _ -> {:error, company}
+    end
   end
 end
