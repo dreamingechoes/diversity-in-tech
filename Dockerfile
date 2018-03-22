@@ -2,6 +2,9 @@ FROM dreamingechoes/elixir:1.6.3
 
 RUN apk add --no-cache --virtual inotify-tools
 
+# Install imagemagick
+RUN apk add --no-cache --update imagemagick-dev
+
 # Install hex, rebar, and get deps
 ENV MIX_ENV=dev
 
