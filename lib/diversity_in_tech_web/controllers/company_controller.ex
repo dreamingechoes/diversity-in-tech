@@ -19,7 +19,7 @@ defmodule DiversityInTechWeb.CompanyController do
       {:ok, company} ->
         conn
         |> put_flash(:info, "Company created successfully.")
-        |> redirect(to: company_path(conn, :show, company))
+        |> redirect(to: company_path(conn, :show, company.slug))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule DiversityInTechWeb.CompanyController do
       {:ok, company} ->
         conn
         |> put_flash(:info, "Company updated successfully.")
-        |> redirect(to: company_path(conn, :show, company))
+        |> redirect(to: company_path(conn, :show, company.slug))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", company: company, changeset: changeset)
