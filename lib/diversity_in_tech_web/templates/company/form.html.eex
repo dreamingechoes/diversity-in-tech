@@ -1,4 +1,4 @@
-<%= form_for @changeset, @action, fn f -> %>
+<%= form_for @changeset, @action, [multipart: true], fn f -> %>
   <%= if @changeset.action do %>
     <div class="notification is-danger">
       <button class="delete"></button>
@@ -23,18 +23,27 @@
   </div>
 
   <div class="field">
-    <%= label f, :logo, class: "label" %>
-    <div class="control">
-      <%= text_input f, :logo, class: "input" %>
-      <%= error_tag f, :logo %>
-    </div>
-  </div>
-
-  <div class="field">
     <%= label f, :website, class: "label" %>
     <div class="control">
       <%= text_input f, :website, class: "input" %>
       <%= error_tag f, :website %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="file">
+      <%= label f, :logo, class: "file-label" do %>
+        <div class="field">
+          <div class="control">
+            <%= file_input f, :logo, class: "file-input" %>
+            <span class="file-cta">
+              <span class="file-icon"> <i class="fa fa-upload"></i> </span>
+              <span class="file-label"> <%= gettext("Choose an image for the logo...") %> </span>
+            </span>
+          </div>
+        </div>
+      <% end %>
+      <%= error_tag f, :logo %>
     </div>
   </div>
 

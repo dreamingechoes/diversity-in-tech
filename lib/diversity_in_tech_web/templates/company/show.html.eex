@@ -11,7 +11,7 @@
       <article class="media">
         <div class="media-left">
           <figure class="image is-128x128">
-            <%= img_tag @company.logo, alt: @company.name %>
+            <%= img_tag(DiversityInTech.Uploaders.Image.url({@company.logo, @company}, :original, signed: true), alt: @company.name) %>
           </figure>
         </div>
         <div class="media-content">
