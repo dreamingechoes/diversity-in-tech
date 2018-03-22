@@ -12,8 +12,8 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
 
-const source_path = path.join(__dirname, 'assets');
-const output_path = path.join(__dirname, 'priv', 'static');
+const source_path = __dirname;
+const output_path = path.join(__dirname, '..', 'priv', 'static');
 
 const css_loaders = [
   {
@@ -86,9 +86,8 @@ module.exports = {
 
   resolve: {
     modules: [
-      path.join(source_path, 'app', 'js'),
-      path.join(source_path, 'app', 'js', 'utils'),
-      'node_modules'
+      path.join(source_path, 'js'),
+      path.join(source_path, 'node_modules')
     ],
     extensions: ['.js', '.scss', '.json']
   },
@@ -116,10 +115,6 @@ module.exports = {
         limit: 1000,
         name: 'fonts/[name].[hash:7].[ext]'
       }
-    },
-    {
-      test: /\.po$/,
-      loader: 'json-loader!po-loader?format=jed1.x'
     }]
   }
 };
