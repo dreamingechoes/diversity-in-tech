@@ -25,6 +25,9 @@ config :diversity_in_tech, DiversityInTech.Guardian,
   issuer: "diversity_in_tech",
   secret_key: System.get_env("DIVERSITY_IN_TECH_SECRET_KEY")
 
+# File uploading configuration
+config :arc, storage: Arc.Storage.Local
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
