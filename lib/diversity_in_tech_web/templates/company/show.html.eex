@@ -5,13 +5,14 @@
   </div>
 </section>
 
-<div class="container">
-  <div class="section">
+<div class="section">
+  <div class="container">
     <div class="box">
       <article class="media">
         <div class="media-left">
           <figure class="image is-128x128">
-            <%= img_tag(DiversityInTech.Uploaders.Image.url({@company.logo, @company}, :original, signed: true), alt: @company.name) %>
+            <%= img_tag(DiversityInTech.Uploaders.Image.url({@company.logo, @company},
+              :original, signed: true), alt: @company.name) %>
           </figure>
         </div>
         <div class="media-content">
@@ -19,15 +20,44 @@
             <h2><%= @company.name %></h2>
             <p><%= @company.description %></p>
             <p><%= link gettext("Website"), to: @company.website, class: "button is-text" %></p>
+            <p><%= link gettext("New Review"), to: company_review_path(@conn, :new, @company.slug),
+              class: "button is-info" %>
             <%= if @conn.assigns.current_user do %>
-              <p>
-                <%= link gettext("Edit"), to: company_path(@conn, :edit, @company.slug), class: "button is-primary" %>
-                <%= link gettext("Delete"), to: company_path(@conn, :delete, @company.slug), method: :delete, data: [confirm: gettext("Are you sure?")], class: "button is-danger" %>
-              </p>
+              <%= link gettext("Edit"), to: company_path(@conn, :edit, @company.slug),
+                class: "button is-primary" %>
+              <%= link gettext("Delete"), to: company_path(@conn, :delete, @company.slug),
+                method: :delete, data: [confirm: gettext("Are you sure?")], class: "button is-danger" %>
             <% end %>
+            </p>
           </div>
         </div>
       </article>
     </div>
+
+    <div class="box">
+      <h2 class="title is-2">
+        <%= gettext("%{reviews} reviews", reviews: length(@reviews.entries)) %>
+      </h2>
+      <hr></hr>
+      <div class="content">
+        <%= for review <- @reviews.entries do %>
+          <b><%= Timex.format!(review.inserted_at , "%B %d, %Y", :strftime)%></b>
+          <p>
+            <b><%= gettext("Pros") %></b><br>
+            <%= review.pros %>
+          </p>
+          <p>
+            <b><%= gettext("Cons") %></b><br>
+            <%= review.cons %>
+          </p>
+          <p>
+            <b><%= gettext("Advice") %></b><br>
+            <%= review.advice %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+    <%= pagination_links(@conn, @reviews, [@company.slug], path: &company_path/4,
+      action: :show, view_style: :bulma) %>
   </div>
 </div>
