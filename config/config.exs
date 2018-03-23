@@ -28,6 +28,10 @@ config :diversity_in_tech, DiversityInTech.Guardian,
 # File uploading configuration
 config :arc, storage: Arc.Storage.Local
 
+# Pagination configuration
+config :scrivener_html,
+  routes_helper: DiversityInTechWeb.Router.Helpers
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
