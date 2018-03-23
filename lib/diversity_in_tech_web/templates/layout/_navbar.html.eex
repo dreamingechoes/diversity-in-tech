@@ -1,36 +1,48 @@
 <nav class="navbar is-transparent">
-  <div class="navbar-brand">
-    <%= content_tag :a, href: page_path(@conn, :index), class: "navbar-item" do %>
-      <%= img_tag "http://via.placeholder.com/112x28", alt: "Diversity In Tech", width: 112, height: 28 %>
-    <% end %>
-    <div class="navbar-burger burger" data-target="navbar">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-
-  <div id="navbar" class="navbar-menu">
-    <div class="navbar-start">
-      <div class="navbar-item has-dropdown is-hoverable">
-        <%= link gettext("Companies"), to: company_path(@conn, :index), class: "navbar-item" %>
-        <%= if @conn.assigns.current_user do %>
-          <%= link gettext("Reviews"), to: review_path(@conn, :index), class: "navbar-item" %>
-          <%= link gettext("Logout"), to: session_path(@conn, :delete), method: :delete, class: "navbar-item" %>
-        <% end %>
+  <div class="container">
+    <div class="navbar-brand">
+      <%= content_tag :a, href: page_path(@conn, :index), class: "navbar-item" do %>
+        <%= img_tag "http://via.placeholder.com/112x28", alt: "Diversity In Tech", width: 112, height: 28 %>
+      <% end %>
+      <div class="navbar-burger burger" data-target="navbar">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
-    <div class="navbar-end">
-      <a href="#" class="navbar-item">
-        <span class="icon">
-          <i class="fa fa-twitter"></i>
-        </span>
-      </a>
-      <a href="#" class="navbar-item">
-        <span class="icon">
-          <i class="fa fa-github"></i>
-        </span>
-      </a>
+
+    <div id="navbar" class="navbar-menu">
+      <div class="navbar-start">
+        <div class="navbar-item">
+          <div class="field has-addons">
+            <div class="control">
+              <input class="input is-small" type="text" placeholder="Search company...">
+            </div>
+            <div class="control">
+              <a class="button is-small is-success">
+                Search
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar-end">
+        <%= if @conn.assigns.current_user do %>
+          <%= link gettext("Logout"), to: session_path(@conn, :delete), method: :delete, class: "navbar-item" %>
+        <% end %>
+
+        <a href="#" class="navbar-item">
+          <span class="icon">
+            <i class="fa fa-twitter"></i>
+          </span>
+        </a>
+        <a href="#" class="navbar-item">
+          <span class="icon">
+            <i class="fa fa-github"></i>
+          </span>
+        </a>
+      </div>
     </div>
   </div>
 </nav>
