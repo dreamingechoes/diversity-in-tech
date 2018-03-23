@@ -3,6 +3,7 @@ defmodule DiversityInTech.Companies.Company do
   use Ecto.Schema
   import Ecto.Changeset
   alias DiversityInTech.Companies.Company
+  alias DiversityInTech.Companies.Review
 
   schema "companies" do
     field(:name, :string)
@@ -12,6 +13,9 @@ defmodule DiversityInTech.Companies.Company do
     field(:website, :string)
 
     timestamps()
+
+    # Associations
+    has_many(:reviews, Review)
   end
 
   # Changeset cast params
