@@ -26,9 +26,10 @@ defmodule DiversityInTechWeb.CompanyController do
     end
   end
 
-  def show(conn, %{"slug" => slug}) do
+  def show(conn, %{"slug" => slug} = params) do
     company = Companies.get_company_by_slug!(slug)
-    render(conn, "show.html", company: company)
+    reviews = Companies.paginate_company_reviews(company.id, params)
+    render(conn, "show.html", company: company, reviews: reviews)
   end
 
   def edit(conn, %{"slug" => slug}) do
