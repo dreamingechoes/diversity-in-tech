@@ -1,5 +1,6 @@
 defmodule DiversityInTech.Repo do
   use Ecto.Repo, otp_app: :diversity_in_tech
+  use Scrivener, page_size: 5
 
   @doc """
   Dynamically loads the repository url from the
