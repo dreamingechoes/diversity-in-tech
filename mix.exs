@@ -68,8 +68,11 @@ defmodule DiversityInTech.Mixfile do
       {:arc_ecto, "~> 0.7.0"},
 
       # Pagination
-      {:scrivener_ecto, "~> 1.2.3"},
+      {:scrivener_ecto, "~> 1.3.0"},
       {:scrivener_html, "~> 1.7.1"},
+
+      # Random
+      {:timex, "~> 3.2.1"},
 
       # Testing and seeding data
       {:faker, "~> 0.9.0"},
