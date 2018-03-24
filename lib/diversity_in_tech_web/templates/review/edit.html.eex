@@ -1,5 +1,16 @@
-<h2>Edit Review</h2>
+<section class="hero is-primary">
+  <div class="hero-body">
+    <p class="title"><%= gettext("Diversity In Tech") %></p>
+    <p class="subtitle">
+      <%= raw gettext("Edit Review For Company: <b>%{company}</b>",
+        company: @company.name) %>
+    </p>
+  </div>
+</section>
 
-<%= render "form.html", Map.put(assigns, :action, review_path(@conn, :update, @review)) %>
-
-<span><%= link "Back", to: review_path(@conn, :index) %></span>
+<div class="container">
+  <div class="section">
+    <%= render "form.html", Map.put(assigns, :action,
+      company_review_path(@conn, :update, @company.slug, @review)) %>
+  </div>
+</div>
