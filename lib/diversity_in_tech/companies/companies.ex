@@ -182,20 +182,20 @@ defmodule DiversityInTech.Companies do
     Repo.all(Review)
   end
 
-    @doc """
-    Returns the list of reviews of a certain company.
+  @doc """
+  Returns the list of reviews of a certain company.
 
-    ## Examples
+  ## Examples
 
-        iex> paginate_company_reviews(company_id, attrs)
-        %Scrivener.Page{entries: [%Review{}], page_number: 1,
-          page_size: 1, total_entries: 1, total_pages: 1}
+      iex> paginate_company_reviews(company_id, attrs)
+      %Scrivener.Page{entries: [%Review{}], page_number: 1,
+        page_size: 1, total_entries: 1, total_pages: 1}
 
-    """
-    def paginate_company_reviews(company_id, attrs) do
-      from(review in Review, where: review.company_id == ^company_id)
-      |> Repo.paginate(attrs)
-    end
+  """
+  def paginate_company_reviews(company_id, attrs) do
+    from(review in Review, where: review.company_id == ^company_id)
+    |> Repo.paginate(attrs)
+  end
 
   @doc """
   Gets a single review.
