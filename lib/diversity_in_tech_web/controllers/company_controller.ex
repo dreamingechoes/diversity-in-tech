@@ -4,8 +4,8 @@ defmodule DiversityInTechWeb.CompanyController do
   alias DiversityInTech.Companies
   alias DiversityInTech.Companies.Company
 
-  def index(conn, _params) do
-    companies = Companies.list_companies()
+  def index(conn, params) do
+    companies = Companies.paginate_companies(params)
     render(conn, "index.html", companies: companies)
   end
 
