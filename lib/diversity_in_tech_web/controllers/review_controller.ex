@@ -4,14 +4,11 @@ defmodule DiversityInTechWeb.ReviewController do
   alias DiversityInTech.Companies
   alias DiversityInTech.Companies.Review
 
-  def index(conn, _params) do
-    reviews = Companies.list_reviews()
-    render(conn, "index.html", reviews: reviews)
-  end
+  def new(conn, params) do
+    company = Companies.get_company_by_slug!(params["company_slug"])
+    changeset = Companies.change_review(%Review{company_id: company.id})
 
-  def new(conn, _params) do
-    changeset = Companies.change_review(%Review{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, company: company)
   end
 
   def create(conn, %{"review" => review_params}) do
@@ -19,7 +16,9 @@ defmodule DiversityInTechWeb.ReviewController do
       {:ok, review} ->
         conn
         |> put_flash(:info, "Review created successfully.")
-        |> redirect(to: review_path(conn, :show, review))
+        |> redirect(
+          to: company_review_path(conn, :show, review.company.slug, review)
+        )
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -34,7 +33,14 @@ defmodule DiversityInTechWeb.ReviewController do
   def edit(conn, %{"id" => id}) do
     review = Companies.get_review!(id)
     changeset = Companies.change_review(review)
-    render(conn, "edit.html", review: review, changeset: changeset)
+
+    render(
+      conn,
+      "edit.html",
+      company: review.company,
+      review: review,
+      changeset: changeset
+    )
   end
 
   def update(conn, %{"id" => id, "review" => review_params}) do
@@ -44,19 +50,12 @@ defmodule DiversityInTechWeb.ReviewController do
       {:ok, review} ->
         conn
         |> put_flash(:info, "Review updated successfully.")
-        |> redirect(to: review_path(conn, :show, review))
+        |> redirect(
+          to: company_review_path(conn, :show, review.company.slug, review)
+        )
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", review: review, changeset: changeset)
     end
-  end
-
-  def delete(conn, %{"id" => id}) do
-    review = Companies.get_review!(id)
-    {:ok, _review} = Companies.delete_review(review)
-
-    conn
-    |> put_flash(:info, "Review deleted successfully.")
-    |> redirect(to: review_path(conn, :index))
   end
 end
