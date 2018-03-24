@@ -22,6 +22,20 @@ defmodule DiversityInTech.Companies do
   end
 
   @doc """
+  Returns the list of companies paginated.
+
+  ## Examples
+
+      iex> paginate_companies(attrs)
+      %Scrivener.Page{entries: [%Company{}], page_number: 1,
+        page_size: 1, total_entries: 1, total_pages: 1}
+
+  """
+  def paginate_companies(attrs) do
+    Repo.paginate(Company, attrs)
+  end
+
+  @doc """
   Gets a single company.
 
   Raises `Ecto.NoResultsError` if the Company does not exist.
