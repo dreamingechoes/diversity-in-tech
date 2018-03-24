@@ -17,12 +17,13 @@
       </div>
 
       <div class="column">
-        <%= for company <- @companies do %>
+        <%= for company <- @companies.entries do %>
           <div class="box">
             <article class="media">
               <div class="media-left">
                 <figure class="image is-128x128">
-                  <%= img_tag(DiversityInTech.Uploaders.Image.url({company.logo, company}, :thumb, signed: true), alt: company.name) %>
+                  <%= img_tag(DiversityInTech.Uploaders.Image.url({company.logo, company},
+                    :thumb, signed: true), alt: company.name) %>
                 </figure>
               </div>
               <div class="media-content">
@@ -35,6 +36,7 @@
             </article>
           </div>
         <% end %>
+        <%= pagination_links(@conn, @companies, view_style: :bulma) %>
       </div>
     </div>
   </div>
