@@ -25,6 +25,8 @@ defmodule DiversityInTechWeb.Router do
     # Logout route
     delete("/session/logout", SessionController, :delete)
 
+    resources("/attributes", AttributeController)
+
     resources(
       "/companies",
       CompanyController,
