@@ -15,7 +15,7 @@ defmodule DiversityInTech.Companies.Company do
     timestamps()
 
     # Associations
-    has_many(:reviews, Review)
+    has_many(:reviews, Review, on_delete: :delete_all)
   end
 
   # Changeset cast params
