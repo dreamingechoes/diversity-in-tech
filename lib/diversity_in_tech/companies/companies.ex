@@ -298,4 +298,196 @@ defmodule DiversityInTech.Companies do
       _ -> {:error, company}
     end
   end
+
+  alias DiversityInTech.Companies.Attribute
+
+  @doc """
+  Returns the list of attributes.
+
+  ## Examples
+
+      iex> list_attributes()
+      [%Attribute{}, ...]
+
+  """
+  def list_attributes do
+    Repo.all(Attribute)
+  end
+
+  @doc """
+  Gets a single attribute.
+
+  Raises `Ecto.NoResultsError` if the Attribute does not exist.
+
+  ## Examples
+
+      iex> get_attribute!(123)
+      %Attribute{}
+
+      iex> get_attribute!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_attribute!(id), do: Repo.get!(Attribute, id)
+
+  @doc """
+  Creates a attribute.
+
+  ## Examples
+
+      iex> create_attribute(%{field: value})
+      {:ok, %Attribute{}}
+
+      iex> create_attribute(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_attribute(attrs \\ %{}) do
+    %Attribute{}
+    |> Attribute.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a attribute.
+
+  ## Examples
+
+      iex> update_attribute(attribute, %{field: new_value})
+      {:ok, %Attribute{}}
+
+      iex> update_attribute(attribute, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_attribute(%Attribute{} = attribute, attrs) do
+    attribute
+    |> Attribute.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a Attribute.
+
+  ## Examples
+
+      iex> delete_attribute(attribute)
+      {:ok, %Attribute{}}
+
+      iex> delete_attribute(attribute)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_attribute(%Attribute{} = attribute) do
+    Repo.delete(attribute)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking attribute changes.
+
+  ## Examples
+
+      iex> change_attribute(attribute)
+      %Ecto.Changeset{source: %Attribute{}}
+
+  """
+  def change_attribute(%Attribute{} = attribute) do
+    Attribute.changeset(attribute, %{})
+  end
+
+  alias DiversityInTech.Companies.AttributeReview
+
+  @doc """
+  Returns the list of attributes_reviews.
+
+  ## Examples
+
+      iex> list_attributes_reviews()
+      [%AttributeReview{}, ...]
+
+  """
+  def list_attributes_reviews do
+    Repo.all(AttributeReview)
+  end
+
+  @doc """
+  Gets a single attribute_review.
+
+  Raises `Ecto.NoResultsError` if the Attribute review does not exist.
+
+  ## Examples
+
+      iex> get_attribute_review!(123)
+      %AttributeReview{}
+
+      iex> get_attribute_review!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_attribute_review!(id), do: Repo.get!(AttributeReview, id)
+
+  @doc """
+  Creates a attribute_review.
+
+  ## Examples
+
+      iex> create_attribute_review(%{field: value})
+      {:ok, %AttributeReview{}}
+
+      iex> create_attribute_review(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_attribute_review(attrs \\ %{}) do
+    %AttributeReview{}
+    |> AttributeReview.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a attribute_review.
+
+  ## Examples
+
+      iex> update_attribute_review(attribute_review, %{field: new_value})
+      {:ok, %AttributeReview{}}
+
+      iex> update_attribute_review(attribute_review, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_attribute_review(%AttributeReview{} = attribute_review, attrs) do
+    attribute_review
+    |> AttributeReview.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a AttributeReview.
+
+  ## Examples
+
+      iex> delete_attribute_review(attribute_review)
+      {:ok, %AttributeReview{}}
+
+      iex> delete_attribute_review(attribute_review)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_attribute_review(%AttributeReview{} = attribute_review) do
+    Repo.delete(attribute_review)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking attribute_review changes.
+
+  ## Examples
+
+      iex> change_attribute_review(attribute_review)
+      %Ecto.Changeset{source: %AttributeReview{}}
+
+  """
+  def change_attribute_review(%AttributeReview{} = attribute_review) do
+    AttributeReview.changeset(attribute_review, %{})
+  end
 end
