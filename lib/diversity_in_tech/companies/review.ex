@@ -1,15 +1,19 @@
 defmodule DiversityInTech.Companies.Review do
   use Ecto.Schema
   import Ecto.Changeset
+  alias DiversityInTech.Companies.AttributeReview
   alias DiversityInTech.Companies.Review
 
   schema "reviews" do
     field(:advice, :string)
     field(:cons, :string)
     field(:pros, :string)
-    field(:company_id, :integer)
+    field(:company_id, :id)
 
     timestamps()
+
+    # Associations
+    has_many(:attributes_reviews, AttributeReview, on_delete: :delete_all)
   end
 
   # Changeset cast params
@@ -21,5 +25,6 @@ defmodule DiversityInTech.Companies.Review do
     review
     |> cast(attrs, @params)
     |> validate_required(@required)
+    |> cast_assoc(:company)
   end
 end
