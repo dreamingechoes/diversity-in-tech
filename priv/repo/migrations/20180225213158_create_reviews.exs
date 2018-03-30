@@ -6,9 +6,11 @@ defmodule DiversityInTech.Repo.Migrations.CreateReviews do
       add(:pros, :text)
       add(:cons, :text)
       add(:advice, :text)
-      add(:company_id, :integer)
+      add(:company_id, references(:companies, on_delete: :delete_all))
 
       timestamps()
     end
+
+    create(index(:reviews, [:company_id]))
   end
 end
