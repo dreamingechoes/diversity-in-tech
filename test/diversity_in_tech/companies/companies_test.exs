@@ -170,4 +170,166 @@ defmodule DiversityInTech.CompaniesTest do
       assert %Ecto.Changeset{} = Companies.change_review(review)
     end
   end
+
+  describe "attributes" do
+    alias DiversityInTech.Companies.Attribute
+
+    @valid_attrs %{description: "some description", name: "some name"}
+    @update_attrs %{
+      description: "some updated description",
+      name: "some updated name"
+    }
+    @invalid_attrs %{description: nil, name: nil}
+
+    def attribute_fixture(attrs \\ %{}) do
+      {:ok, attribute} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Companies.create_attribute()
+
+      attribute
+    end
+
+    test "list_attributes/0 returns all attributes" do
+      attribute = attribute_fixture()
+      assert Companies.list_attributes() == [attribute]
+    end
+
+    test "get_attribute!/1 returns the attribute with given id" do
+      attribute = attribute_fixture()
+      assert Companies.get_attribute!(attribute.id) == attribute
+    end
+
+    test "create_attribute/1 with valid data creates a attribute" do
+      assert {:ok, %Attribute{} = attribute} =
+               Companies.create_attribute(@valid_attrs)
+
+      assert attribute.description == "some description"
+      assert attribute.name == "some name"
+    end
+
+    test "create_attribute/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} =
+               Companies.create_attribute(@invalid_attrs)
+    end
+
+    test "update_attribute/2 with valid data updates the attribute" do
+      attribute = attribute_fixture()
+
+      assert {:ok, attribute} =
+               Companies.update_attribute(attribute, @update_attrs)
+
+      assert %Attribute{} = attribute
+      assert attribute.description == "some updated description"
+      assert attribute.name == "some updated name"
+    end
+
+    test "update_attribute/2 with invalid data returns error changeset" do
+      attribute = attribute_fixture()
+
+      assert {:error, %Ecto.Changeset{}} =
+               Companies.update_attribute(attribute, @invalid_attrs)
+
+      assert attribute == Companies.get_attribute!(attribute.id)
+    end
+
+    test "delete_attribute/1 deletes the attribute" do
+      attribute = attribute_fixture()
+      assert {:ok, %Attribute{}} = Companies.delete_attribute(attribute)
+
+      assert_raise Ecto.NoResultsError, fn ->
+        Companies.get_attribute!(attribute.id)
+      end
+    end
+
+    test "change_attribute/1 returns a attribute changeset" do
+      attribute = attribute_fixture()
+      assert %Ecto.Changeset{} = Companies.change_attribute(attribute)
+    end
+  end
+
+  describe "attributes_reviews" do
+    alias DiversityInTech.Companies.AttributeReview
+
+    @valid_attrs %{score: 42}
+    @update_attrs %{score: 43}
+    @invalid_attrs %{score: nil}
+
+    def attribute_review_fixture(attrs \\ %{}) do
+      {:ok, attribute_review} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Companies.create_attribute_review()
+
+      attribute_review
+    end
+
+    test "list_attributes_reviews/0 returns all attributes_reviews" do
+      attribute_review = attribute_review_fixture()
+      assert Companies.list_attributes_reviews() == [attribute_review]
+    end
+
+    test "get_attribute_review!/1 returns the attribute_review with given id" do
+      attribute_review = attribute_review_fixture()
+
+      assert Companies.get_attribute_review!(attribute_review.id) ==
+               attribute_review
+    end
+
+    test "create_attribute_review/1 with valid data creates a attribute_review" do
+      assert {:ok, %AttributeReview{} = attribute_review} =
+               Companies.create_attribute_review(@valid_attrs)
+
+      assert attribute_review.score == 42
+    end
+
+    test "create_attribute_review/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} =
+               Companies.create_attribute_review(@invalid_attrs)
+    end
+
+    test "update_attribute_review/2 with valid data updates the attribute_review" do
+      attribute_review = attribute_review_fixture()
+
+      assert {:ok, attribute_review} =
+               Companies.update_attribute_review(
+                 attribute_review,
+                 @update_attrs
+               )
+
+      assert %AttributeReview{} = attribute_review
+      assert attribute_review.score == 43
+    end
+
+    test "update_attribute_review/2 with invalid data returns error changeset" do
+      attribute_review = attribute_review_fixture()
+
+      assert {:error, %Ecto.Changeset{}} =
+               Companies.update_attribute_review(
+                 attribute_review,
+                 @invalid_attrs
+               )
+
+      assert attribute_review ==
+               Companies.get_attribute_review!(attribute_review.id)
+    end
+
+    test "delete_attribute_review/1 deletes the attribute_review" do
+      attribute_review = attribute_review_fixture()
+
+      assert {:ok, %AttributeReview{}} =
+               Companies.delete_attribute_review(attribute_review)
+
+      assert_raise Ecto.NoResultsError, fn ->
+        Companies.get_attribute_review!(attribute_review.id)
+      end
+    end
+
+    test "change_attribute_review/1 returns a attribute_review changeset" do
+      attribute_review = attribute_review_fixture()
+
+      assert %Ecto.Changeset{} =
+               Companies.change_attribute_review(attribute_review)
+    end
+  end
 end
