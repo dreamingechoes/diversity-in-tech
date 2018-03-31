@@ -25,6 +25,5 @@ defmodule DiversityInTech.Companies.Review do
     review
     |> cast(attrs, @params)
     |> validate_required(@required)
-    |> cast_assoc(:company)
   end
 end
