@@ -29,7 +29,11 @@ const css_loaders = [
 
 const plugins = [
   new ExtractTextPlugin('css/[name].css'),
-  new CopyWebpackPlugin([{ from: path.join(source_path, 'static') }])
+  new CopyWebpackPlugin([{ from: path.join(source_path, 'static') }]),
+  new webpack.ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery'
+  })
 ];
 
 if (isTest) {
