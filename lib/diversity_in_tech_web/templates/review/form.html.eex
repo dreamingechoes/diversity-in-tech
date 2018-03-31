@@ -8,6 +8,12 @@
 
   <%= hidden_input f, :company_id %>
 
+  <select class="rating">
+    <option value="1" data-html="good">1</option>
+    <option value="2" data-html="mediocre">2</option>
+    <option value="3" data-html="best">3</option>
+  </select>
+
   <div class="field">
     <%= label f, :pros, class: "label" %>
     <div class="control">
