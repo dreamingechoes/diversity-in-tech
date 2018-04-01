@@ -8,12 +8,6 @@
 
   <%= hidden_input f, :company_id %>
 
-  <select class="rating">
-    <option value="1" data-html="good">1</option>
-    <option value="2" data-html="mediocre">2</option>
-    <option value="3" data-html="best">3</option>
-  </select>
-
   <div class="field">
     <%= label f, :pros, class: "label" %>
     <div class="control">
@@ -37,6 +31,18 @@
       <%= error_tag f, :advice %>
     </div>
   </div>
+
+  <%= if @conn.assigns.current_user do %>
+    <div class="field">
+      <%= label f, :status, class: "label" %>
+      <div class="control">
+        <div class="select">
+          <%= select f, :status, options_for(ReviewStatusEnum) %>
+          <%= error_tag f, :status %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 
   <div class="field is-grouped">
     <div class="control">
