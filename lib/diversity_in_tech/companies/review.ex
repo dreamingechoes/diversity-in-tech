@@ -8,6 +8,7 @@ defmodule DiversityInTech.Companies.Review do
     field(:advice, :string)
     field(:cons, :string)
     field(:pros, :string)
+    field(:status, ReviewStatusEnum)
     field(:company_id, :id)
 
     timestamps()
@@ -17,7 +18,7 @@ defmodule DiversityInTech.Companies.Review do
   end
 
   # Changeset cast params
-  @params [:pros, :cons, :advice, :company_id]
+  @params [:pros, :cons, :advice, :status, :company_id]
   @required [:company_id]
 
   @doc false
