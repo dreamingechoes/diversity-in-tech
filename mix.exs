@@ -54,7 +54,7 @@ defmodule DiversityInTech.Mixfile do
       {:bodyguard, "~> 2.2.0"},
 
       # Code analysis
-      {:credo, "~> 0.9.0-rc1", only: [:dev, :test]},
+      {:credo, "~> 0.9.0", only: [:dev, :test]},
       {:dialyxir, "~> 0.5.1", only: [:dev], runtime: false},
 
       # Code documentation
@@ -72,6 +72,7 @@ defmodule DiversityInTech.Mixfile do
       {:scrivener_html, "~> 1.7.1"},
 
       # Random
+      {:ecto_enum, "~> 1.1.0"},
       {:timex, "~> 3.2.1"},
 
       # Testing and seeding data
