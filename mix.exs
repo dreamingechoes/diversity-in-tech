@@ -47,7 +47,7 @@ defmodule DiversityInTech.Mixfile do
 
       # Authentication
       {:comeonin, "~> 4.1.1"},
-      {:bcrypt_elixir, "~> 1.0"},
+      {:bcrypt_elixir, "~> 0.12"},
       {:guardian, "~> 1.0"},
 
       # Authorization
