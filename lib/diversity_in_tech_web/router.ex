@@ -20,6 +20,26 @@ defmodule DiversityInTechWeb.Router do
   end
 
   scope "/", DiversityInTechWeb do
+    pipe_through([:browser, :browser_auth, :browser_ensure_auth])
+
+    # Logout route
+    delete("/session/logout", SessionController, :delete)
+
+    resources("/attributes", AttributeController)
+
+    resources(
+      "/companies",
+      CompanyController,
+      only: [:new, :create, :edit, :update, :delete],
+      param: "slug"
+    ) do
+      resources("/reviews", ReviewController)
+    end
+
+    resources("/users", UserController)
+  end
+
+  scope "/", DiversityInTechWeb do
     pipe_through([:browser, :browser_auth])
 
     get("/", PageController, :index)
@@ -34,25 +54,5 @@ defmodule DiversityInTechWeb.Router do
     end
 
     resources("/session", SessionController, only: [:new, :create])
-  end
-
-  scope "/", DiversityInTechWeb do
-    pipe_through([:browser, :browser_auth, :browser_ensure_auth])
-
-    # Logout route
-    delete("/session/logout", SessionController, :delete)
-
-    resources("/attributes", AttributeController)
-
-    resources(
-      "/companies",
-      CompanyController,
-      only: [:new, :create, :edit, :update, :delete],
-      param: "slug"
-    ) do
-      resources("/reviews", ReviewController, except: [:new, :create])
-    end
-
-    resources("/users", UserController)
   end
 end
