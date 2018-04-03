@@ -11,14 +11,12 @@ defmodule DiversityInTechWeb.ReviewController do
     render(conn, "new.html", changeset: changeset, company: company)
   end
 
-  def create(conn, %{"review" => review_params}) do
+  def create(conn, %{"review" => review_params} = params) do
     case Companies.create_review(review_params) do
       {:ok, review} ->
         conn
         |> put_flash(:info, "Review created successfully.")
-        |> redirect(
-          to: company_review_path(conn, :show, review.company.slug, review)
-        )
+        |> redirect(to: company_path(conn, :show, params["company_slug"]))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
