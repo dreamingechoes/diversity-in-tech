@@ -1,0 +1,43 @@
+<%= render DiversityInTechWeb.LayoutView, "_header.html",
+  title: dgettext("admin", "Administration"),
+  subtitle: dgettext("admin", "List of company attributes") %>
+
+<section class="section">
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= dgettext("admin", "Name") %></th>
+          <th><%= dgettext("admin", "Description") %></th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th><%= dgettext("admin", "Name") %></th>
+          <th><%= dgettext("admin", "Description") %></th>
+          <th>&nbsp;</th>
+        </tr>
+      </tfoot>
+      <tbody>
+        <%= for attribute <- @attributes do %>
+          <tr>
+            <td><%= attribute.name %></td>
+            <td><%= attribute.description %></td>
+            <td>
+              <%= link dgettext("admin", "Show"), to: admin_attribute_path(@conn, :show, attribute),
+                class: "button is-info is-small" %>
+              <%= link dgettext("admin", "Edit"), to: admin_attribute_path(@conn, :edit, attribute),
+                class: "button is-primary is-small" %>
+              <%= link dgettext("admin", "Delete"), to: admin_attribute_path(@conn, :delete, attribute),
+                method: :delete, data: [confirm: dgettext("admin", "Are you sure?")],
+                class: "button is-danger is-small" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%#= pagination_links(@conn, @attributes, view_style: :bulma) %>
+    <%= link dgettext("admin", "New attribute"), to: admin_attribute_path(@conn, :new), class: "button is-link" %>
+  </div>
+</section>

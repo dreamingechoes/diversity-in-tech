@@ -1,0 +1,35 @@
+<%= render DiversityInTechWeb.LayoutView, "_header.html",
+  title: dgettext("admin", "Administration"),
+  subtitle: dgettext("admin", "Show user") %>
+
+<div class="section">
+  <div class="container">
+    <div class="box">
+      <div class="content">
+        <h2><%= @user.username %></h2>
+        <p>
+          <b><%= dgettext("admin", "Name:") %></b>
+          <%= @user.name %>
+        </p>
+        <p>
+          <b><%= dgettext("admin", "Surname:") %></b>
+          <%= @user.surname %>
+        </p>
+        <p>
+          <b><%= dgettext("admin", "Email:") %></b>
+          <%= @user.email %>
+        </p>
+        <p>
+          <b><%= dgettext("admin", "Role:") %></b>
+          <%= @user.role %>
+        </p>
+        </p>
+      </div>
+    </div>
+    <%= link dgettext("admin", "Edit"), to: admin_user_path(@conn, :edit, @user),
+      class: "button is-primary" %>
+    <%= link dgettext("admin", "Delete"), to: admin_user_path(@conn, :delete, @user),
+      method: :delete, data: [confirm: dgettext("admin", "Are you sure?")], class: "button is-danger" %>
+    <%= link "Back", to: admin_user_path(@conn, :index), class: "button is-text" %>
+  </div>
+</div>

@@ -37,7 +37,7 @@
       <%= label f, :status, class: "label" %>
       <div class="control">
         <div class="select">
-          <%= select f, :status, options_for(ReviewStatusEnum) %>
+          <%= select f, :status, options_for(ReviewStatusEnum), prompt: dgettext("review", "Select a status") %>
           <%= error_tag f, :status %>
         </div>
       </div>

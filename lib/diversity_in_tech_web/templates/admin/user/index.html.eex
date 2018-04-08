@@ -1,0 +1,52 @@
+<%= render DiversityInTechWeb.LayoutView, "_header.html",
+  title: dgettext("admin", "Administration"),
+  subtitle: dgettext("admin", "List of users") %>
+
+<section class="section">
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= dgettext("admin", "Username") %></th>
+          <th><%= dgettext("admin", "Name") %></th>
+          <th><%= dgettext("admin", "Surname") %></th>
+          <th><%= dgettext("admin", "Email") %></th>
+          <th><%= dgettext("admin", "Role") %></th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th><%= dgettext("admin", "Username") %></th>
+          <th><%= dgettext("admin", "Name") %></th>
+          <th><%= dgettext("admin", "Surname") %></th>
+          <th><%= dgettext("admin", "Email") %></th>
+          <th><%= dgettext("admin", "Role") %></th>
+          <th>&nbsp;</th>
+        </tr>
+      </tfoot>
+      <tbody>
+        <%= for user <- @users do %>
+          <tr>
+            <td><%= user.username %></td>
+            <td><%= user.name %></td>
+            <td><%= user.surname %></td>
+            <td><%= user.email %></td>
+            <td><%= user.role %></td>
+            <td>
+              <%= link dgettext("admin", "Show"), to: admin_user_path(@conn, :show, user),
+                class: "button is-info is-small" %>
+              <%= link dgettext("admin", "Edit"), to: admin_user_path(@conn, :edit, user),
+                class: "button is-primary is-small" %>
+              <%= link dgettext("admin", "Delete"), to: admin_user_path(@conn, :delete, user),
+                method: :delete, data: [confirm: dgettext("admin", "Are you sure?")],
+                class: "button is-danger is-small" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%#= pagination_links(@conn, @users, view_style: :bulma) %>
+    <%= link dgettext("admin", "New user"), to: admin_user_path(@conn, :new), class: "button is-link" %>
+  </div>
+</section>

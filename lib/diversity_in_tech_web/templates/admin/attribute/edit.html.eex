@@ -1,0 +1,9 @@
+<%= render DiversityInTechWeb.LayoutView, "_header.html",
+  title: dgettext("admin", "Administration"),
+  subtitle: dgettext("admin", "Edit attribute") %>
+
+<div class="container">
+  <div class="section">
+    <%= render "form.html", Map.put(assigns, :action, admin_attribute_path(@conn, :update, @attribute)) %>
+  </div>
+</div>
