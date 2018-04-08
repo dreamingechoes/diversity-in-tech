@@ -20,39 +20,36 @@ defmodule DiversityInTechWeb.Router do
   end
 
   scope "/", DiversityInTechWeb do
-    pipe_through([:browser, :browser_auth, :browser_ensure_auth])
+    # Application unauthenticated scope
+    scope "/" do
+      pipe_through([:browser, :browser_auth])
 
-    # Logout route
-    delete("/session/logout", SessionController, :delete)
+      # Logout route
+      delete("/session/logout", SessionController, :delete)
 
-    resources("/attributes", AttributeController)
+      # Home route
+      get("/", PageController, :index)
 
-    resources(
-      "/companies",
-      CompanyController,
-      only: [:new, :create, :edit, :update, :delete],
-      param: "slug"
-    ) do
+      resources(
+        "/companies",
+        CompanyController,
+        only: [:index, :show],
+        param: "slug"
+      ) do
+        resources("/reviews", ReviewController, only: [:new, :create])
+      end
+
+      resources("/session", SessionController, only: [:new, :create])
+    end
+
+    # Admin scope
+    scope "/admin", Admin, as: :admin do
+      pipe_through([:browser, :browser_auth, :browser_ensure_auth])
+
+      resources("/attributes", AttributeController)
+      resources("/companies", CompanyController, param: "slug")
       resources("/reviews", ReviewController)
+      resources("/users", UserController)
     end
-
-    resources("/users", UserController)
-  end
-
-  scope "/", DiversityInTechWeb do
-    pipe_through([:browser, :browser_auth])
-
-    get("/", PageController, :index)
-
-    resources(
-      "/companies",
-      CompanyController,
-      only: [:index, :show],
-      param: "slug"
-    ) do
-      resources("/reviews", ReviewController, only: [:new, :create])
-    end
-
-    resources("/session", SessionController, only: [:new, :create])
   end
 end
