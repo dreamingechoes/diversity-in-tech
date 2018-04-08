@@ -1,9 +1,6 @@
-<section class="hero is-primary">
-  <div class="hero-body">
-    <p class="title"><%= gettext("Diversity In Tech") %></p>
-    <p class="subtitle"><%= gettext("Edit Company") %></p>
-  </div>
-</section>
+<%= render DiversityInTechWeb.LayoutView, "_header.html",
+  title: gettext("Diversity In Tech"),
+  subtitle: gettext("Edit Company") %>
 
 <div class="container">
   <div class="section">

@@ -1,18 +1,12 @@
-<section class="hero is-primary">
-  <div class="hero-body">
-    <p class="title"><%= gettext("Diversity In Tech") %></p>
-    <p class="subtitle"><%= gettext("List Of Companies") %></p>
-  </div>
-</section>
+<%= render DiversityInTechWeb.LayoutView, "_header.html",
+  title: gettext("Diversity In Tech"),
+  subtitle: gettext("List Of Companies") %>
 
 <section class="section">
   <div class="container">
     <div class="columns is-desktop">
       <div class="column is-one-third">
         <div class="box">
-          <%= if @conn.assigns.current_user do %>
-            <%= link "New Company", to: company_path(@conn, :new), class: "button is-link" %>
-          <% end %>
         </div>
       </div>
 
