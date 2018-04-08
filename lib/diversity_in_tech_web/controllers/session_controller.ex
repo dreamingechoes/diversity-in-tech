@@ -1,6 +1,6 @@
 defmodule DiversityInTechWeb.SessionController do
   use DiversityInTechWeb, :controller
-  alias DiversityInTech.Guardian
+  alias DiversityInTech.Guardian.Plug
 
   plug(:put_layout, "auth.html")
 
@@ -15,7 +15,7 @@ defmodule DiversityInTechWeb.SessionController do
     case Guardian.authenticate_user(username_or_email, password) do
       {:ok, user} ->
         conn
-        |> Guardian.Plug.sign_in(user)
+        |> Plug.sign_in(user)
         |> put_flash(:success, gettext("Welcome to Diversity In Tech!"))
         |> redirect(to: page_path(conn, :index))
 
@@ -28,7 +28,7 @@ defmodule DiversityInTechWeb.SessionController do
 
   def delete(conn, _) do
     conn
-    |> Guardian.Plug.sign_out()
+    |> Plug.sign_out()
     |> redirect(to: page_path(conn, :index))
   end
 end
