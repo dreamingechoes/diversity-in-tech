@@ -1,0 +1,12 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <p class="title"><%= gettext("Diversity In Tech") %></p>
+    <p class="subtitle"><%= gettext("New Attribute") %></p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="section">
+    <%= render "form.html", Map.put(assigns, :action, attribute_path(@conn, :create)) %>
+  </div>
+</div>

@@ -4,8 +4,8 @@ defmodule DiversityInTech.Companies.Attribute do
   alias DiversityInTech.Companies.AttributeReview
 
   schema "attributes" do
-    field(:description, :string)
     field(:name, :string)
+    field(:description, :string)
 
     timestamps()
 
