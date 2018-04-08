@@ -1,5 +1,6 @@
 defmodule DiversityInTechWeb.SessionController do
   use DiversityInTechWeb, :controller
+  alias DiversityInTech.Guardian
   alias DiversityInTech.Guardian.Plug
 
   plug(:put_layout, "auth.html")
