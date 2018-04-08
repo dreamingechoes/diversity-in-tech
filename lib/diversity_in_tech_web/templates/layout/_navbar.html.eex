@@ -1,4 +1,4 @@
-<nav class="navbar is-transparent">
+<nav class="navbar is-primary">
   <div class="container">
     <div class="navbar-brand">
       <%= content_tag :a, href: page_path(@conn, :index), class: "navbar-item" do %>
@@ -19,7 +19,7 @@
               <input class="input is-small" type="text" placeholder="Search company...">
             </div>
             <div class="control">
-              <a class="button is-small is-success">
+              <a class="button is-small is-info">
                 Search
               </a>
             </div>
@@ -28,10 +28,6 @@
       </div>
 
       <div class="navbar-end">
-        <%= if @conn.assigns.current_user do %>
-          <%= link gettext("Logout"), to: session_path(@conn, :delete), method: :delete, class: "navbar-item" %>
-        <% end %>
-
         <a href="#" class="navbar-item">
           <span class="icon">
             <i class="fa fa-twitter"></i>
