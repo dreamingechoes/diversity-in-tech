@@ -1,5 +1,7 @@
 # DiversityInTech
 
+:warning: **Work in progress** :warning:
+
 Phoenix application to rate tech companies according to how diverse friendly they are. Inspired by [techleaks.org](https://www.techleaks.org/).
 
 ## Setup development environment with Docker
