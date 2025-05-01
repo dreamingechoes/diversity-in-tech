@@ -1,54 +1,50 @@
-# React + TypeScript + Vite
+# 🌍 Diversity In Tech
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Explore and rate tech companies on their commitment to diversity and inclusion. This app helps users discover which companies are leading the way in creating more inclusive workplaces.
 
-Currently, two official plugins are available:
+![OG Image](https://yourdomain.com/og-image.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ✨ Clean, responsive UI built with TailwindCSS
+- ⚛️ React + Vite + TypeScript
+- 📥 Join waitlist via email collection (NoCodeForm integration)
+- 🎯 Clear CTA and modern layout
+- 🌐 Open Graph tags for rich social sharing
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🛠 Tech Stack
+
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [NoCodeForm](https://nocodeform.io) for email collection
+
+---
+
+## 📦 Getting Started
+
+```bash
+git clone https://github.com/your-username/diversity-in-tech.git
+cd diversity-in-tech
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Then open your browser at [http://localhost:5173](http://localhost:5173)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 🔒 Email Collection
+
+Emails are submitted to [NoCodeForm](https://nocodeform.io), a backendless form service. You can replace this with your own backend later if desired.
+
+---
+
+## 👨‍💻 Author
+
+Made with ❤️ by [dreamingechoes](https://dreamingecho.es)
