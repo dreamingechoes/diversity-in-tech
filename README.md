@@ -2,8 +2,6 @@
 
 Explore and rate tech companies on their commitment to diversity and inclusion. This app helps users discover which companies are leading the way in creating more inclusive workplaces.
 
-![OG Image](https://yourdomain.com/og-image.png)
-
 ---
 
 ## 🚀 Features
